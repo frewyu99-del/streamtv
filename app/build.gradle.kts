@@ -11,8 +11,8 @@ android {
         applicationId = "com.example.streamtv"
         minSdk = 23            // Android 6.0 и выше
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
         // Адрес вашего JSON-каталога. Пусто = встроенные демо-данные.
         buildConfigField("String", "API_URL", "\"\"")
     }

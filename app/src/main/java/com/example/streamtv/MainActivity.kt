@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
@@ -17,9 +16,9 @@ class MainActivity : AppCompatActivity() {
     private val tabs = listOf(
         Tab(R.drawable.ic_home, "Главная") { HomeFragment() },
         Tab(R.drawable.ic_search, "Поиск") { SearchFragment() },
-        Tab(R.drawable.ic_bookmark, "Избранное") { placeholder("Избранное") },
-        Tab(R.drawable.ic_person, "Профиль") { placeholder("Профиль") },
-        Tab(R.drawable.ic_settings, "Настройки") { placeholder("Настройки") }
+        Tab(R.drawable.ic_bookmark, "Избранное") { FavoritesFragment() },
+        Tab(R.drawable.ic_person, "Профиль") { ProfileFragment() },
+        Tab(R.drawable.ic_settings, "Настройки") { SettingsFragment() }
     )
     private val buttons = ArrayList<ImageView>()
 
@@ -57,12 +56,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dp(v: Int) = (v * resources.displayMetrics.density).toInt()
-
-    private fun placeholder(title: String) =
-        PlaceholderFragment().apply { arguments = bundleOf("title" to title) }
 }
 
 fun play(ctx: Context, item: Item) {
+    Store.lastPlayed = item.title
     ctx.startActivity(
         Intent(ctx, PlayerActivity::class.java)
             .putExtra("url", item.stream)
